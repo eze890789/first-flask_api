@@ -91,6 +91,17 @@ def delete_task(task_id):
     return "", 204
 
 
+@app.route("/")
+def index():
+    return jsonify({"service": "first_flask_api",
+                    "endpoints": ["/books", "/books/<id>", "/stats"]})
+
+
+@app.route("/stats")
+def health():
+    return jsonify({"status": "ok"}), 200
+
+
 if __name__ == "__main__":
     init_db()
     app.run(debug=True)
